@@ -9,5 +9,11 @@
 <input type="password" id="pass" name="pass" />
 <input type="submit" value="Login" />
 </div>
+
+<?php
+echo "Datos";
+var_dump($data);
+?>
+
 </body> 
 </html>

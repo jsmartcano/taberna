@@ -25,7 +25,6 @@ else if ($mode == 'PROD')
     );
 }
 
-$GLOBALS["conf"] = $conf;
 
 
 

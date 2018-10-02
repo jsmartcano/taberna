@@ -36,18 +36,24 @@ require_once("controllers/".$_controller.'Controller.php');
 // ---------------------------------------
 $params = array();
 foreach ($_REQUEST as $name => $val) {
-   $params[$name]=$val;
+   if ($name!="a" && $name!="c") {
+        $params[$name]=$val;
+   }
 }
 
 // Crear clase de base de datos
 // ---------------------------------------
 $db = new Database();
 
-// Ejecutar acción
+// Crear controlador, inyectarle parámetros y conexión
+// y ejecutar acción
 // ---------------------------------------
 $_class = $_controller.'Controller';
 $_method = $_action.'Action';
-$controllerObject = new $_class($params, $db);
+$controllerObject = new $_class();
+$controllerObject->setDb($db);
+$controllerObject->setParams($params);
+$controllerObject->setConfigutation($conf);
 $controllerObject->$_method();
 
 
