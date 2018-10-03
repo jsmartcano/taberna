@@ -3,18 +3,13 @@
 class Database {
 
     private $connection;
-    private $conf;
-
-    public function __construct() {
-        $this->conf = $GLOBALS['conf'];
-    }
 
     public function connect() {
         $result = new mysqli(
-            $this->conf['db']['host'],            
-            $this->conf['db']['user'], 
-            $this->conf['db']['pass'],
-            $this->conf['db']['name']
+            App::$conf['db']['host'],            
+            App::$conf['db']['user'], 
+            App::$conf['db']['pass'],
+            App::$conf['db']['name']
         );
         $result->query("SET NAMES 'utf8'");
         return $result;

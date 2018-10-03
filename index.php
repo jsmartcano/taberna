@@ -1,36 +1,32 @@
 <?php
 
 require_once "conf.php";
-require_once "Database.php";
+require_once "./class/Database.php";
+require_once "./class/App.php";
 
 session_start();
 
 // Ver si está logeada
 // ---------------------------------------
 if (!isset($_SESSION['user_name'])) {
-    $_controller = "login";
+    $_c = "login";
 } 
 
 // Ver si llega controlador
 // ---------------------------------------
 if (isset($_REQUEST["c"])) {
-    $_contoller = $_REQUEST["c"];
+    $_c = $_REQUEST["c"];
 } else {
-    $_controller = "login";
+    $_c = "login";
 }
 
 // Ver si llega acción
 // ---------------------------------------
 if (isset($_REQUEST["a"])) {
-    $_action = $_REQUEST["a"];
+    $_a= $_REQUEST["a"];
 } else {
-    $_action = "default";
+    $_a = "default";
 }
-
-// Cargar controlador
-// ---------------------------------------
-require_once("class/Controller.php");
-require_once("controllers/".$_controller.'Controller.php');
 
 // Crear array asociativo con los parámetros
 // ---------------------------------------
@@ -41,21 +37,17 @@ foreach ($_REQUEST as $name => $val) {
    }
 }
 
-// Crear clase de base de datos
-// ---------------------------------------
-$db = new Database();
+// Configurar APP
+// ----------------------------------------------------------
+App::setParams($params);
+App::setConf($conf);
+App::setDataBase(new Database());
 
-// Crear controlador, inyectarle parámetros y conexión
-// y ejecutar acción
+// Cargar controlador
 // ---------------------------------------
-$_class = $_controller.'Controller';
-$_method = $_action.'Action';
-$controllerObject = new $_class();
-$controllerObject->setDb($db);
-$controllerObject->setParams($params);
-$controllerObject->setConfigutation($conf);
-$controllerObject->$_method();
-
+$controller = App::getController($_c);
+$_method = $_a.'Action';
+$controller->$_method();
 
 die();
 

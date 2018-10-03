@@ -1,4 +1,6 @@
 <?php
+
+
 class LoginController extends Controller {
 
     // Acción para mostrar el formulario
@@ -11,14 +13,13 @@ class LoginController extends Controller {
     // ---------------------------------------
     public function loginAction() {
       
-        // crear el modelo no hacer query aqui
-        $result = $this->db->query("Select * from users");
-        var_dump($result);
-        var_dump($this->conf);
-        var_dump($this->params);
-
-               
-        
+      $users = App::getModel("Users");
+      if ($users==null) {
+          die("mal");
+      }      
+      $user = $users->getUserByLogin(App::$params["login"]);
+      var_dump($user);
+    
     }
 }
 
