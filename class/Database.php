@@ -33,10 +33,15 @@ class Database {
 
     function resultToArray($result) {
         $rows = array();
-        while($row = $result->fetch_assoc()) {
-            $rows[] = $row;
-        }
+        if ($result->num_rows == 1) {
+            $rows = $result->fetch_assoc();
+        } else {
+            while($row = $result->fetch_assoc()) {
+                $rows[] = $row;
+            }
+        }    
         return $rows;
+        //var_dump($rows);
     }
 }
 ?>

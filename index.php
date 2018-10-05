@@ -6,12 +6,6 @@ require_once "./class/App.php";
 
 session_start();
 
-// Ver si está logeada
-// ---------------------------------------
-if (!isset($_SESSION['user_name'])) {
-    $_c = "login";
-} 
-
 // Ver si llega controlador
 // ---------------------------------------
 if (isset($_REQUEST["c"])) {
@@ -27,6 +21,14 @@ if (isset($_REQUEST["a"])) {
 } else {
     $_a = "default";
 }
+
+// Ver si está logeada
+// ---------------------------------------
+if (!isset($_SESSION['user_id'])) {
+    $_c = "login";
+    $_a = "default";
+}
+
 
 // Crear array asociativo con los parámetros
 // ---------------------------------------
@@ -49,7 +51,7 @@ $controller = App::getController($_c);
 $_method = $_a.'Action';
 $controller->$_method();
 
-die();
+exit();
 
 
 
