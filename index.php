@@ -24,9 +24,9 @@ if (isset($_REQUEST["a"])) {
 
 // Ver si está logeada
 // ---------------------------------------
-if (!isset($_SESSION['user_id'])) {
-    $_c = "login";
-    $_a = "default";
+if (!isset($_SESSION['user_id']) && $_c != "login") {
+    header("Location:index.php?c=login&a=default");
+    die();
 }
 
 
