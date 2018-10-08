@@ -9,6 +9,11 @@ class LoginController extends Controller {
         $this->loadView("login.php",array("login"=>"uno","test2"=>array("uno","dos")));
     }
 
+    public function logoutAction() {
+        session_destroy();
+        header("Location:index.php");
+    }
+
     // Acción para intentar login
     // ---------------------------------------
     public function loginAction() {
@@ -21,7 +26,7 @@ class LoginController extends Controller {
         $user = $users->getUserByLogin(App::$params["login"]);
         if (count($user) > 0) {
             if ($user["login"]==App::$params["login"] && 
-                $user["pass"]==App::$params["password"]            
+                $user["pass"]==App::$params["md5password"]            
             ) {                    
                 $_SESSION['user_id'] = $user["id"];
                 $_SESSION['user_login'] = $user["login"];

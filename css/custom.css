@@ -2,12 +2,36 @@
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem; }
 
+html {
+  height: 100%;
+  background: -moz-linear-gradient(315deg, #d601e0 0%, #d601e0 45%, black 58%, black 100%);
+  /* ff3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #d601e0), color-stop(45%, #d601e0), color-stop(58%, black), color-stop(100%, black));
+  /* safari4+,chrome */
+  background: -webkit-linear-gradient(315deg, #d601e0 0%, #d601e0 45%, black 58%, black 100%);
+  /* safari5.1+,chrome10+ */
+  background: -o-linear-gradient(315deg, #d601e0 0%, #d601e0 45%, black 58%, black 100%);
+  /* opera 11.10+ */
+  background: -ms-linear-gradient(315deg, #d601e0 0%, #d601e0 45%, black 58%, black 100%);
+  /* ie10+ */
+  background: linear-gradient(135deg, #d601e0 0%, #d601e0 45%, black 58%, black 100%);
+  /* w3c */ }
+
 body {
-  background: #9CECFB;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  background: transparent;
+  width: 100%;
+  height: 100%; }
+
+#app-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative; }
+
+.section div {
+  border: 1px solid gray;
+  background-color: #fff; }
+
+#header {
+  padding: 15px; }
 
 /*# sourceMappingURL=custom.css.map */
